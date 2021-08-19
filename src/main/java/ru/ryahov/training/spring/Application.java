@@ -1,9 +1,23 @@
 package ru.ryahov.training.spring;
 
-public class Application
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class Application {
+    private Client client;
+    private EventLogger eventLogger;
+
+    public void logEvent(String event) {
+        String message = event.replaceAll(String.valueOf(client.getId()), client.getName());
+        eventLogger.logEvent(message);
+    }
+
+    public static void main(String[] args) {
+         Application application = new Application();
+         application.setClient(new Client(1, "Alex"));
+         application.setEventLogger(new EventLogger());
+         application.logEvent("Some event for user 1");
     }
 }
