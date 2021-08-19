@@ -1,0 +1,16 @@
+# IntelliJ IDEA
+.idea
+*.iws
+*.iml
+*.ipr
+
+# Maven
+log/
+target/
+
+#PlantUML
+*.plantuml
+
+#Log
+*.log
+/log
