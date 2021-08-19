@@ -3,7 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="client" class="ru.ryahov.training.spring.Client" />
-    <bean id="eventLogger" class="ru.ryahov.training.spring.ConsoleEventLogger" />
-    <bean id="app" class="ru.ryahov.training.spring.Application" />
+    <bean id="client" class="ru.ryahov.training.spring.Client">
+        <constructor-arg type="java.lang.Integer" index="0" value="1"/>
+        <constructor-arg type="java.lang.String" index="1" value="Alex"/>
+    </bean>
+    <bean id="eventLogger" class="ru.ryahov.training.spring.ConsoleEventLogger"/>
+    <bean id="app" class="ru.ryahov.training.spring.Application">
+        <constructor-arg name="client" ref="client"/>
+        <constructor-arg name="eventLogger" ref="eventLogger"/>
+    </bean>
 </beans>
