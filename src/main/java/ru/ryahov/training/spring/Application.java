@@ -1,10 +1,16 @@
 package ru.ryahov.training.spring;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Application {
     private Client client;
     private EventLogger eventLogger;
@@ -15,9 +21,8 @@ public class Application {
     }
 
     public static void main(String[] args) {
-         Application application = new Application();
-         application.setClient(new Client(1, "Alex"));
-         application.setEventLogger(new EventLogger());
-         application.logEvent("Some event for user 1");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
+        Application application = applicationContext.getBean("app", Application.class);
+        application.logEvent("Some event for user 1");
     }
 }
